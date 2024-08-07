@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import { NavMenu } from "@/components/NavMenu";
 
 export function DashboardLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -9,18 +10,8 @@ export function DashboardLayout({ children }) {
   return (
     <div className="flex h-screen bg-background">
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-        <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="md:hidden">
-            <Menu className="h-6 w-6" />
-          </Button>
-        </SheetTrigger>
         <SheetContent side="left" className="w-[240px] sm:w-[300px]">
-          <nav className="flex flex-col space-y-4 py-4">
-            <Button variant="ghost" className="justify-start">Dashboard</Button>
-            <Button variant="ghost" className="justify-start">Users</Button>
-            <Button variant="ghost" className="justify-start">Projects</Button>
-            <Button variant="ghost" className="justify-start">Settings</Button>
-          </nav>
+          <NavMenu />
         </SheetContent>
       </Sheet>
 
