@@ -1,6 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function RecentActivity() {
+  const activities = [
+    { type: 'login', user: 'John Doe', color: 'bg-blue-500' },
+    { type: 'project', name: 'Website Redesign', color: 'bg-green-500' },
+    { type: 'task', name: 'Update Documentation', color: 'bg-yellow-500' },
+  ];
+
   return (
     <Card>
       <CardHeader>
@@ -8,18 +14,16 @@ export function RecentActivity() {
       </CardHeader>
       <CardContent>
         <ul className="space-y-4">
-          <li className="flex items-center">
-            <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-            <span>User John Doe logged in</span>
-          </li>
-          <li className="flex items-center">
-            <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-            <span>New project "Website Redesign" created</span>
-          </li>
-          <li className="flex items-center">
-            <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
-            <span>Task "Update Documentation" completed</span>
-          </li>
+          {activities.map((activity, index) => (
+            <li key={index} className="flex items-center">
+              <span className={`w-2 h-2 ${activity.color} rounded-full mr-2`}></span>
+              <span>
+                {activity.type === 'login' && `User ${activity.user} logged in`}
+                {activity.type === 'project' && `New project "${activity.name}" created`}
+                {activity.type === 'task' && `Task "${activity.name}" completed`}
+              </span>
+            </li>
+          ))}
         </ul>
       </CardContent>
     </Card>
